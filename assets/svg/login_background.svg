@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="393" height="500" viewBox="0 0 393 500">
+  <defs>
+    <linearGradient id="laxjqnujpb" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00dfe8" stop-opacity=".702"/>
+      <stop offset="1" stop-color="#6838ff"/>
+    </linearGradient>
+    <linearGradient id="nlupi1fyxc" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#2b53ff" stop-opacity=".502"/>
+      <stop offset="1" stop-color="#6838ff" stop-opacity=".651"/>
+    </linearGradient>
+    <linearGradient id="ziakvltnqd" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1facff" stop-opacity=".502"/>
+      <stop offset="1" stop-color="#00dfe8"/>
+    </linearGradient>
+    <clipPath id="1lbi95eg3a">
+      <path fill="#fff" stroke="#707070" d="M0 0H393V851H0z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#1lbi95eg3a)">
+    <g>
+      <path fill="url(#laxjqnujpb)" d="M401.854 2677.619c-7.891 93.986 41.533 178.7 162.011 291.876s227.453 23.005 342.973 134.525 117.076 221.928 256.024 170.794 377.311-236.508 276.7-349.045-566.2-335.36-603.684-326.357-434.024 78.207-434.024 78.207z" transform="matrix(0.777, -0.629, 0.629, 0.777, -2295.935, -1483.791)"/>
+      <path fill="url(#nlupi1fyxc)" d="M.558 15.609c.412 129.047 41.374 242.015 97.493 296.2s198.684-10.839 252.368 117.094 166.59 143.119 261.053 95.382c97.084-49.062 219.54-264.671 177.259-311.423S575.457 27.871 445.756 13.069.558 15.609.558 15.609z" transform="translate(90.603 -304.243) rotate(39)"/>
+      <path fill="url(#ziakvltnqd)" d="M374.389 3068.055c59.98 24.419 121.788 26.861 152.691 80.583s51.506 80.583 24.036 175.817-60.091 175.818-77.259 219.772-34.338 80.583-51.506 109.886-77.259 136.747-85.844-29.3 6.868-417.567 13.735-459.08 24.147-97.678 24.147-97.678z" transform="matrix(-0.875, 0.485, -0.485, -0.875, 2317.997, 2748.259)"/>
+    </g>
+  </g>
+</svg>
