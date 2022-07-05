@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'next_screen.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(const MaterialApp(home: MyApp()));
 }
+
+final _auth = FirebaseAuth.instance;
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,6 +28,9 @@ class _MyAppState extends State<MyApp> {
   final myControllerUsername = TextEditingController();
   bool isEmpty = true;
   bool viewPassword = true;
+  String passwordField = '';
+  String emailField = '';
+  bool showValidation = false;
 
   @override
   void initState() {
@@ -48,39 +60,47 @@ class _MyAppState extends State<MyApp> {
                     SvgPicture.asset('assets/svg/logo.svg'),
                     const SizedBox(height: 120),
                     Form(
-                        child: TextFormField(
-                          controller: myControllerUsername,
-                          decoration: const InputDecoration(
-                            label: Text('Username'),
-                            labelStyle: TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(),
-                          ),
+                      child: TextFormField(
+                        controller: myControllerUsername,
+                        onChanged: (value) {
+                          emailField = value;
+                        },
+                        decoration: InputDecoration(
+                          label: const Text('Email'),
+                          labelStyle: TextStyle(
+                              color: showValidation ? Colors.red : Colors.grey),
+                          border: const OutlineInputBorder(),
                         ),
                       ),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
                     Form(
-                        child: TextFormField(
-                          obscureText: viewPassword,
-                          controller: myControllerPassword,
-                          decoration: InputDecoration(
-                            label: const Text('Password'),
-                            labelStyle: const TextStyle(color: Colors.grey),
-                            border: const OutlineInputBorder(),
-                            suffixIcon: IconButton(
-                              icon: viewPassword
-                                  ? const Icon(Icons.visibility_off)
-                                  : const Icon(Icons.visibility),
-                              onPressed: () {
-                                setState(() {
-                                  viewPassword = !viewPassword;
-                                });
-                              },
-                            ),
+                      child: TextFormField(
+                        obscureText: viewPassword,
+                        controller: myControllerPassword,
+                        onChanged: (value) {
+                          passwordField = value;
+                        },
+                        decoration: InputDecoration(
+                          label: const Text('Password'),
+                          labelStyle: TextStyle(
+                              color: showValidation ? Colors.red : Colors.grey),
+                          border: const OutlineInputBorder(),
+                          suffixIcon: IconButton(
+                            icon: viewPassword
+                                ? const Icon(Icons.visibility_off)
+                                : const Icon(Icons.visibility),
+                            onPressed: () {
+                              setState(() {
+                                viewPassword = !viewPassword;
+                              });
+                            },
                           ),
                         ),
                       ),
+                    ),
                     const SizedBox(
                       height: 40,
                     ),
@@ -88,7 +108,27 @@ class _MyAppState extends State<MyApp> {
                       width: double.infinity,
                       height: 44,
                       child: ElevatedButton(
-                        onPressed: (isEmpty ? null : () {}),
+                        onPressed: (isEmpty
+                            ? null
+                            : () async {
+                                try {
+                                  await _auth.signInWithEmailAndPassword(
+                                      email: emailField,
+                                      password: passwordField);
+                                } catch (e) {
+                                  return setState(() {
+                                    showValidation = true;
+                                  });
+                                }
+
+                                if (mounted) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              NextScreen(user: emailField)));
+                                }
+                              }),
                         child: const Text('LOGIN'),
                       ),
                     ),
