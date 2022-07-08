@@ -11,16 +11,25 @@ class NextScreen extends StatelessWidget {
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
-          SvgPicture.asset('assets/svg/login_background.svg'),
+          SvgPicture.asset(
+            'assets/svg/login_background.svg',
+            alignment: Alignment.topCenter,
+            width: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height,
+          ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 40.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 32.0, horizontal: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 180),
                 SvgPicture.asset('assets/svg/logo.svg'),
                 const SizedBox(height: 120),
-                Text('WELCOME, $user', style: const TextStyle(fontSize: 20, color: Colors.white),),
+                Text(
+                  'WELCOME, $user',
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                ),
               ],
             ),
           )

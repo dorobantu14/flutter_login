@@ -50,7 +50,12 @@ class _MyAppState extends State<MyApp> {
         body: SingleChildScrollView(
           child: Stack(
             children: [
-              SvgPicture.asset('assets/svg/login_background.svg'),
+              SvgPicture.asset(
+                'assets/svg/login_background.svg',
+                alignment: Alignment.topCenter,
+                width: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 32.0, horizontal: 40.0),
